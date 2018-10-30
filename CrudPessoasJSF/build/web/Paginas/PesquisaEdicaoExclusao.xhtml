@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>PEE</title>
+    </h:head>
+    <h:body>
+        <h1>
+            Pesquisar, Editar, Excluir
+        </h1>
+        <br></br>
+        <br></br>
+        
+        <h:form>
+            <h:panelGrid columns="3">
+                ID:
+                <h:inputText id="inpId" value="#{bgrPEE.id}"></h:inputText>
+                <h:commandButton id="btnPesquisarId" value="Pesquisar ID" action="#{bgrPEE.pesquisarPorId()}"></h:commandButton>
+                Nome:
+                <h:inputText id="inpNome" value="#{bgrPEE.nome}"></h:inputText>
+                <h:commandButton id="btnPesquisarNome" value="Pesquisar Nome"></h:commandButton>
+                RG:
+                <h:inputText id="inpRg" value="#{bgrPEE.rg}"></h:inputText>
+                <h:inputHidden></h:inputHidden>
+                CPF:
+                <h:inputText id="inpCpf" value="#{bgrPEE.cpf}"></h:inputText>
+                <h:inputHidden></h:inputHidden>
+                <h:commandButton id="btnExcluir" value="Excluir" action="#{bgrPEE.excluir()}"></h:commandButton>
+                <h:commandButton id="btnEditar" value="Editar" action="#{bgrPEE.editar()}"></h:commandButton>
+                
+                
+            </h:panelGrid>
+            <br></br>
+            <h:outputText id="otpErro" value="#{bgrPEE.mensagem}" style="color:red"></h:outputText>
+        </h:form>
+    </h:body>
+</html>
+
