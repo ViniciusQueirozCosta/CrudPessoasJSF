@@ -9,7 +9,7 @@ import org.hibernate.Session;
 
 public class PessoaDAO implements intMetodos
 {
-public String mensagem;
+    public String mensagem;
     Session session = Conexao.getSessionFactory().openSession();
     
     @Override

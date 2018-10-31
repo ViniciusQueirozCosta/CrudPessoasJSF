@@ -2,6 +2,7 @@ package ManagedBeans;
 
 import Modelo.Controle;
 import Modelo.Pessoa;
+import Modelo.atbEstaticos;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.bean.*;
@@ -15,6 +16,39 @@ public class bgrPEE
     private String rg;
     private String cpf;
     private String mensagem;
+    private List<Pessoa> listaPessoas;
+    
+    public String pesquisarPorNome()
+    {
+        Modelo.Controle controle = new Modelo.Controle();
+        List<String> dadosPessoa = new ArrayList();
+        
+        this.listaPessoas = new ArrayList();
+        dadosPessoa.add(0,"0");
+        dadosPessoa.add(1, this.nome);
+        dadosPessoa.add(2,"0");
+        dadosPessoa.add(3,"0");
+        
+        controle.PequisarPorNome(dadosPessoa);
+        
+        if(atbEstaticos.listaPessoasEstatico.size() == 0 )
+        {
+            this.mensagem = "Este nome não existe";
+            return null;
+        }
+        else if(atbEstaticos.listaPessoasEstatico.size() == 1)
+        {
+            this.id= atbEstaticos.listaPessoasEstatico.get(0).getId().toString();
+            this.nome= atbEstaticos.listaPessoasEstatico.get(0).getNome();
+            this.rg= atbEstaticos.listaPessoasEstatico.get(0).getRg();
+            this.cpf= atbEstaticos.listaPessoasEstatico.get(0).getCpf();
+            
+            return null;
+        }
+       
+        this.listaPessoas = atbEstaticos.listaPessoasEstatico;
+        return "/Paginas/RespostaPesquisaPorNome.xhtml";
+    }
 
     public void pesquisarPorId()
     {
@@ -124,5 +158,15 @@ public class bgrPEE
     public void setMensagem(String mensagem)
     {
         this.mensagem = mensagem;
+    }
+
+    public List<Pessoa> getListaPessoas()
+    {
+        return listaPessoas;
+    }
+
+    public void setListaPessoas(List<Pessoa> listaPessoas)
+    {
+        this.listaPessoas = listaPessoas;
     }
 }

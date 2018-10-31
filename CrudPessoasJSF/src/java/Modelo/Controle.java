@@ -7,6 +7,24 @@ public class Controle
 {
     public String mensagem;
     
+    public void PequisarPorNome(List<String> DadosPessoa)
+    {
+        this.mensagem = "";
+        Validacao validacao = new Validacao();
+        validacao.ValidarDadosPessoa(DadosPessoa);
+        if (validacao.mensagem.equals(""))
+        {
+            Pessoa pessoa = new Pessoa();
+            pessoa.setNome(DadosPessoa.get(1));
+            DAL.PessoaDAO pessoaDAO = new DAL.PessoaDAO();
+            atbEstaticos.listaPessoasEstatico = pessoaDAO.PesquisarPessoaPorNome(pessoa);
+            this.mensagem = pessoaDAO.mensagem;
+        }
+        else
+            this.mensagem = validacao.mensagem;
+        
+    }
+    
     public void CadastrarPessoa(List<String> DadosPessoa)
     {
         this.mensagem="";
